@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магічна куля</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0b1133;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            max-width: 300px;
+            font-size: 20px;
+        }
+
+        .magic-ball {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center, #63e219, #22c0db, #bffd15);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0px 0px 15px rgba(102, 12, 180, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        }
+
+        .ask-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+           background-image: linear-gradient(orange, red, blue, yellow);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .ask-button:hover {
+            background-image: linear-gradient(blue, green, yellow, aqua);
+        }
+
+        .error {
+            color: red;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        
+        @media (max-width: 600px) {
+            .magic-ball {
+                width: 200px;
+                height: 200px;
+                font-size: 20px;
+            }
+
+            .ask-button {
+                font-size: 1rem;
+            }
+
+            input {
+                width: 80%;
+                max-width: 200px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const container = document.createElement('div');
+        container.className = 'container';
+
+       
+        const questionInput = document.createElement('input');
+        questionInput.type = 'text';
+    questionInput.placeholder = 'Запитайте мене щось...';
+        container.appendChild(questionInput);
+
+        
+        const magicBall = document.createElement('div');
+        magicBall.className = 'magic-ball';
+        magicBall.innerText = '...'; 
+
+        
+        container.appendChild(magicBall);
+
+        
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error';
+        container.appendChild(errorMessage);
+
+        
+        const askButton = document.createElement('button');
+        askButton.className = 'ask-button';
+        askButton.innerText = 'Запитати';
+        container.appendChild(askButton);
+
+        
+        document.body.appendChild(container);
+
+        
+        const answers = ['Так', 'Ні', 'Можливо', 'Безумовно', 'Сумнівно'];
+
+        
+        askButton.addEventListener('click', function() {
+           
+            errorMessage.innerText = '';
+
+           
+            if (questionInput.value.trim() === '') {
+                errorMessage.innerText = 'Будь ласка, введіть ваше питання!';
+                return;
+            }
+
+           
+            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            magicBall.innerText = randomAnswer; 
+        });
+    });
+</script>
+
+</body>
+</html>
